@@ -3,12 +3,12 @@
 // Definitions by: My Self <https://github.com/johngeorgewright>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-interface Callback {
+export interface Callback {
     (...args: any[]): void;
     _groupName?: string;
 }
 
-type Constructable<T> = new (...args: any[]) => T;
+export type Constructable = new (...args: any[]) => any;
 
 export default class WildEmitter {
     isWildEmitter: boolean;
@@ -27,6 +27,5 @@ export default class WildEmitter {
 
     getWildcardCallbacks(eventName: string): Callback[];
 
-    static mixin<T>(constructor: Constructable<T>): void;
-    static mixin<T extends object>(mixable: T): void;
+    static mixin(constructor: Constructable | {[key: string]: any}): void;
 }
